@@ -40,6 +40,11 @@ main {
   text-align: center;
 }
 
+main .left-side,
+main .right-side {
+  animation: TopBottom 600ms forwards;
+}
+
 main h2 {
   margin-bottom: 2.1rem;
 
@@ -105,6 +110,65 @@ main .options button:hover {
   color: var(--dark-blue);
 }
 
+main button.reset {
+  background: var(--gray);
+
+  padding: 1rem;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  position: absolute;
+  left: 50%;
+  bottom: 10rem;
+
+  transform: translateX(-50%) translateY(0);
+
+  transition: 300ms;
+
+  cursor: pointer;
+}
+
+main button.reset:hover {
+  background: var(--red);
+
+  transform: translateX(-50%) translateY(-5px);
+}
+
+main button.reset:hover svg path {
+  stroke: var(--white);
+}
+
+main button.reset svg {
+  width: 2.4rem;
+}
+
+main button.reset svg path {
+  stroke: var(--black);
+
+  transition: 300ms;
+}
+
+@keyframes TopBottom {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bottomTop {
+  from {
+    transform: translateX(50%) translateY(20%);
+  }
+  to {
+    transform: translateX(50%) translateY(0);
+  }
+}
+
 @media screen and (max-width: 482px) {
   main {
     flex-direction: column;
@@ -114,5 +178,29 @@ main .options button:hover {
   main .left-side {
     padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--gray);
+  }
+
+  main .right-side {
+    animation-delay: 200ms;
+    opacity: 0;
+  }
+
+  main button.reset {
+    bottom: 50%;
+    left: min(1.35rem, 10%);
+
+    transform: translateY(50%);
+  }
+
+  main button.reset:hover {
+    background: var(--red);
+
+    transform: none !important;
+  }
+}
+
+@media screen and (min-width: 386px) and (max-width: 482px) {
+  main button.reset {
+    left: 6%;
   }
 }
